@@ -14,7 +14,7 @@ Very similar to SAX it allows you to handle events :
 - Definition Handler : events related to the parsing of the SGML definition part (DTD)
 - Instance Handler : events related to the parsing of the SGML document it self
 
-See the [documentation](https://hamdikarray.github.io/simple-api-for-sgml-parser-dist/docs/apidocs/index.html)
+See the [documentation](https://hamdikarray.github.io/simple-api-for-sgml-dist/docs/apidocs/index.html)
 
 Very simple to use, it allows you also to deal with the SGML document as XML document :
 
