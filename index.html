@@ -1,55 +1,83 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset='utf-8'>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width">
-
-  <title>SGML Parser Reader</title>
-  <meta name="description" content="Simple API for SGML (SAS) is an event-driven, serial-access mechanism for accessing SGML documents with JAVA.">
-  <meta name="author" content="Hamdi KARRAY"/>
-
-  <!-- Flatdoc -->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src='https://cdn.rawgit.com/rstacruz/flatdoc/v0.9.0/legacy.js'></script>
-  <script src='https://cdn.rawgit.com/rstacruz/flatdoc/v0.9.0/flatdoc.js'></script>
-
-  <!-- Flatdoc theme -->
-  <link  href='https://cdn.rawgit.com/rstacruz/flatdoc/v0.9.0/theme-white/style.css' rel='stylesheet'>
-  <script src='https://cdn.rawgit.com/rstacruz/flatdoc/v0.9.0/theme-white/script.js'></script>
-
-  <!-- Meta -->
-  <meta content="Simple API for SGML" property="og:title">
-  <meta content="Simple API for SGML description goes here." name="description">
-
-  <!-- Initializer -->
-  <script>
-    Flatdoc.run({
-      fetcher: Flatdoc.github('hamdikarray/simple-api-for-sgml-parser-dist')
-    });
-  </script>
-</head>
-<body role='flatdoc'>
-
-  <div class='header'>
-    <div class='left'>
-      <h1>Simple API for SGML</h1>
-      <ul>
-        <li><a href='https://github.com/hamdikarray/simple-api-for-sgml-parser-dist'>View on GitHub</a></li>
-        <li><a href='https://github.com/hamdikarray/simple-api-for-sgml-parser-dist/issues'>Issues</a></li>
-      </ul>
-    </div>
-    <div class='right'>
-      <iframe src="http://ghbtns.com/github-btn.html?hamdikarray=hamdikarray&amp;simple-api-for-sgml-parser-dist=simple-api-for-sgml-parser-dist&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
-    </div>
-  </div>
-
-  <div class='content-root'>
-    <div class='menubar'>
-      <div class='menu section' role='flatdoc-menu'></div>
-    </div>
-    <div role='flatdoc-content' class='content'></div>
-  </div>
-
-</body>
+  <head>
+    <title>SGML Parser Reader</title>
+    <meta name="description"
+      content="Simple API for SGML (SAS) is an event-driven, serial-access mechanism for accessing SGML documents with JAVA.">
+    <meta name="author" content="Hamdi KARRAY" />
+  </head>
+  <body>
+    <h1>Simple API for SGML</h1>
+    <p>Simple API for SGML (SAS) is an event-driven, serial-access mechanism for accessing SGML documents with
+      JAVA.<br /> Very similar to SAX it allows you to handle events :</p>
+    <ul>
+      <li>Error Handler : to handle warning, error and fatal erros</li>
+      <li>Declaration Handler : events related to the parsing of the SGML declaration part</li>
+      <li>Definition Handler : events related to the parsing of the SGML definition part (DTD)</li>
+      <li>Instance Handler : events related to the parsing of the SGML document it self</li>
+    </ul>
+    <p>See the <a href="https://hamdikarray.github.io/simple-api-for-sgml-parser-dist/docs/apidocs/index.html"
+        >documentation</a></p>
+    <p>Very simple to use, it allows you also to deal with the SGML document as XML document :</p>
+    <ul>
+      <li>
+        <p>Convert from SGML to XML with many options</p>
+      </li>
+      <li>
+        <p>Convert from XML back to SGML</p>
+        <ul>
+          <li>infine allows converting from SGML to SGML</li>
+          <li>transparency : dealing only with XML</li>
+        </ul>
+      </li>
+      <li>
+        <p>Transforming SGML with XSLT transform for various engine like SAXON API (directly as a source or throw
+          extension function)</p>
+      </li>
+      <li>
+        <p>Thread SAFE : very usefull for big data</p>
+      </li>
+    </ul>
+    <p>For evaluation, create an issue with the following informations :</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Information</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>* First Name</td>
+        </tr>
+        <tr>
+          <td>* Last Name</td>
+        </tr>
+        <tr>
+          <td>Company</td>
+        </tr>
+        <tr>
+          <td>* Country</td>
+        </tr>
+        <tr>
+          <td>* Email</td>
+        </tr>
+        <tr>
+          <td>Phone</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>For running :</p>
+    <pre><code>java -cp "lib/*" \
+-Dsgml.catalog.files=file:/u/user/sgml.catalog \
+com.sitc.api.sas.main.Main \
+$*
+</code></pre>
+    <ul>
+      <li>sgml.catalog.files : System property to set the Catalogs files (needs to be URIs and at least one SGML
+        declration)</li>
+      <li>$* : SGML File paths</li>
+    </ul>
+    <p>It's a beta version.<br /> SGML is an old standard that is often very complicated: do not hesitate to create
+      issues. We will try to be very reactive</p>
+  </body>
 </html>
