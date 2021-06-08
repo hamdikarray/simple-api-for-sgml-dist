@@ -2,10 +2,11 @@
 <html>
   <head>
     <title>SGML Parser Reader</title>
+    <meta name="google-site-verification" content="QHAlKcrWPVc9YWh-J9gpsVwHfc9_NTLqEAqUVaGzrwg" />
     <meta name="description"
       content="Simple API for SGML (SAS) is an event-driven, serial-access mechanism for accessing SGML documents with JAVA.">
     <meta name="author" content="Hamdi KARRAY" />
-	<link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css">
   </head>
   <body>
     <h1>Simple API for SGML</h1>
@@ -17,8 +18,6 @@
       <li>Definition Handler : events related to the parsing of the SGML definition part (DTD)</li>
       <li>Instance Handler : events related to the parsing of the SGML document it self</li>
     </ul>
-    <p>See the <a href="https://hamdikarray.github.io/simple-api-for-sgml-dist/docs/apidocs/index.html"
-        >documentation</a></p>
     <p>Very simple to use, it allows you also to deal with the SGML document as XML document :</p>
     <ul>
       <li>
@@ -39,46 +38,161 @@
         <p>Thread SAFE : very usefull for big data</p>
       </li>
     </ul>
-    <p>For evaluation, create an issue with the following informations :</p>
+    <h2>Usage</h2>
+    <p>Like SAX, we need to declare a Reader :</p>
+    <pre><code>final SASParserFactory factory = SASParserFactory.newInstance();
+factory.setValidating(true);
+
+final CatalogResolver catalogResolver = new CatalogResolver();
+catalogResolver.addCatalog("file:/d:/sgml/sgml.catalog");
+
+SASParser parser = factory.newSASParser();
+Reader reader = parser.getSGMLReader();
+reader.setEntityResolver(catalogResolver);
+
+</code></pre>
+    <p>For dealing with SGML events :</p>
+    <pre><code>reader.setInstanceHandler(new InstanceHandler() {
+		
+		@Override
+		public void startElement(String[] grpList, String qName) throws SASException {
+		}
+		
+		@Override
+		public void startElement(String qName) throws SASException {
+		}
+		
+		@Override
+		public void startDocument() throws SASException {
+		}
+		
+		@Override
+		public void startContent() throws SASException {
+		}
+		
+		@Override
+		public void setDocumentLocator(Locator locator) {
+		}
+		
+		@Override
+		public void processingInstruction(String content) throws SASException {
+		}
+		
+		@Override
+		public void endElement(String[] grpList, String qName) throws SASException {
+		}
+		
+		@Override
+		public void endElement(String qName) throws SASException {
+		}
+		
+		@Override
+		public void endDocument() throws SASException {
+		}
+		
+		@Override
+		public void emptyStartElement() throws SASException {
+		}
+		
+		@Override
+		public void emptyEndElement() throws SASException {
+		}
+		
+		@Override
+		public void comment(String string) throws SASException {
+		}
+		
+		@Override
+		public void characters(char[] ch, int start, int length) throws SASException {
+		}
+		
+		@Override
+		public void attribute(String qName, String value) throws SASException {
+		}
+});
+				
+reader.parse(new InputSource("file:/d:/sgml/file.sgm"));
+
+</code></pre>
+    <p>or more simple for converting to XML document :</p>
+    <pre><code>
+XMLReader xr = reader.asXMLReader();
+Source src = new SAXSource(xr, new InputSource("file:/d:/sgml/file.sgm"));
+
+Result res = new StreamResult("file:/d:/sgml/file.xml");
+Transformer transformer = TransformerFactory.newInstance().newTransformer();
+transformer.transform(src, res);
+
+</code></pre>
+    <h2>Version</h2>
+    <h3>Home Edition</h3>
+    <p>See the <a href="https://hamdikarray.github.io/simple-api-for-sgml-dist/docs/he/apidocs/index.html"
+        >documentation</a></p>
+    <p>This is an evaluation version with some features desactivated :</p>
+    <ul>
+      <li>Fully java support for SAS like support, conversion in XML, parsing SGML declarartion and DTD definition</li>
+      <li>Some SGML declaration features not supported : DATATAG, RANK</li>
+      <li>Somme DTD features not supported : USEMAP, PIENTITY, STARTAGENTITY, ENDTAGENTITY and MSENTITY</li>
+      <li>Some instance handler event deactivated for entities and attrbutes : all event fired as character event or
+        ignored</li>
+      <li>Limited time evaluation : Evaluation licenses must not be used for production work. On about 1% of time, it
+        will insert random asterisks into serialized output.</li>
+    </ul>
+    <h3>Professional Edition</h3>
+    <p>See the <a href="https://hamdikarray.github.io/simple-api-for-sgml-dist/docs/pe/apidocs/index.html"
+        >documentation</a></p>
+    <p>adds a number of features to HE version :</p>
+    <ul>
+      <li>All SGML declaration features supported</li>
+      <li>All DTD features supported</li>
+      <li>Fully instance handler event support</li>
+    </ul>
+    <h3>Entreprise Edition (coming soon)</h3>
+    <p>The fully-featured product with in addition :</p>
+    <ul>
+      <li>SGML reader and writer support : <ul>
+          <li>Directly for performance</li>
+          <li>Transparency with XML support</li>
+        </ul>
+      </li>
+      <li>DTD canonizing</li>
+      <li>...</li>
+    </ul>
+    <h2>Evaluation</h2>
+    <p>For PE or EE version, please create an issue with the following informations :</p>
     <table>
       <thead>
         <tr>
           <th>Information</th>
+          <th> </th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>* First Name</td>
+          <td> </td>
         </tr>
         <tr>
           <td>* Last Name</td>
+          <td> </td>
         </tr>
         <tr>
           <td>Company</td>
+          <td> </td>
         </tr>
         <tr>
           <td>* Country</td>
+          <td> </td>
         </tr>
         <tr>
           <td>* Email</td>
+          <td> </td>
         </tr>
         <tr>
           <td>Phone</td>
+          <td> </td>
         </tr>
       </tbody>
     </table>
-    <p>For running :</p>
-    <pre><code>java -cp "lib/*" \
--Dsgml.catalog.files=file:/u/user/sgml.catalog \
-com.sitc.api.sas.main.Main \
-$*
-</code></pre>
-    <ul>
-      <li>sgml.catalog.files : System property to set the Catalogs files (needs to be URIs and at least one SGML
-        declration)</li>
-      <li>$* : SGML File paths</li>
-    </ul>
-    <p>It's a beta version.<br /> SGML is an old standard that is often very complicated: do not hesitate to create
-      issues. We will try to be very reactive</p>
   </body>
 </html>
