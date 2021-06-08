@@ -147,11 +147,11 @@ The fully-featured product with in addition :
 ## Evaluation
 For PE or EE version, please create an issue with the following informations : 
 
-|Information   |
-|---|
-| * First Name   |
-| * Last Name  	  |
-|  Company |
-|  * Country  	 |
-|  * Email |
-|  Phone |
+|Information   | |
+|---|---|
+| * First Name   | |
+| * Last Name  	  | |
+|  Company | |
+|  * Country  	 | |
+|  * Email | |
+|  Phone | |
