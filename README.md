@@ -36,6 +36,18 @@ reader.setEntityResolver(catalogResolver);
 
 ```
 
+This is a catalog sample : 
+
+```
+
+SGMLDECL "docbook.dec"
+PUBLIC "ISO 8879-1986//ENTITIES Added Latin 1//EN" "entities/Isolat1.ent"
+DOCTYPE BOOK "doctypes/book.dtd"
+
+```
+
+**The SGMLDECL and the DOCTYPE entries are mandatory.**
+
 For dealing with SGML events : 
 
 ```
@@ -114,6 +126,15 @@ Transformer transformer = TransformerFactory.newInstance().newTransformer();
 transformer.transform(src, res);
 
 ```
+
+We can configure the SASParserFactory : 
+
+```
+factory.setFeature(SASParserFeatures.QUANTITY_CHECKING, true);
+factory.setFeature(SASParserFeatures.CAPACITY_CHECKING, false);
+factory.setFeature(SASParserFeatures.ID_REF_CHECKING, true);
+```
+
 
 ## Version
 ### Home Edition 

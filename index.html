@@ -1,46 +1,49 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>SGML Parser Reader</title>
-    <meta name="google-site-verification" content="QHAlKcrWPVc9YWh-J9gpsVwHfc9_NTLqEAqUVaGzrwg" />
-    <meta name="description"
-      content="Simple API for SGML (SAS) is an event-driven, serial-access mechanism for accessing SGML documents with JAVA.">
-    <meta name="author" content="Hamdi KARRAY" />
-    <link rel="stylesheet" href="index.css">
-  </head>
-  <body>
-    <h1>Simple API for SGML</h1>
-    <p>Simple API for SGML (SAS) is an event-driven, serial-access mechanism for accessing SGML documents with
-      JAVA.<br /> Very similar to SAX it allows you to handle events :</p>
-    <ul>
-      <li>Error Handler : to handle warning, error and fatal erros</li>
-      <li>Declaration Handler : events related to the parsing of the SGML declaration part</li>
-      <li>Definition Handler : events related to the parsing of the SGML definition part (DTD)</li>
-      <li>Instance Handler : events related to the parsing of the SGML document it self</li>
-    </ul>
-    <p>Very simple to use, it allows you also to deal with the SGML document as XML document :</p>
-    <ul>
-      <li>
-        <p>Convert from SGML to XML with many options</p>
-      </li>
-      <li>
-        <p>Convert from XML back to SGML</p>
-        <ul>
-          <li>infine allows converting from SGML to SGML</li>
-          <li>transparency : dealing only with XML</li>
-        </ul>
-      </li>
-      <li>
-        <p>Transforming SGML with XSLT transform for various engine like SAXON API (directly as a source or throw
-          extension function)</p>
-      </li>
-      <li>
-        <p>Thread SAFE : very usefull for big data</p>
-      </li>
-    </ul>
-    <h2>Usage</h2>
-    <p>Like SAX, we need to declare a Reader :</p>
-    <pre><code>final SASParserFactory factory = SASParserFactory.newInstance();
+	<head>
+		<title>SGML Parser Reader</title>
+		<meta name="google-site-verification" content="QHAlKcrWPVc9YWh-J9gpsVwHfc9_NTLqEAqUVaGzrwg" />
+		<meta name="description"
+			content="Simple API for SGML (SAS) is an event-driven, serial-access mechanism for accessing SGML documents with JAVA.">
+		<meta name="author" content="Hamdi KARRAY" />
+		<link rel="stylesheet" href="index.css">
+	</head>
+	<body>
+		<h1>Simple API for SGML</h1>
+		<p>Simple API for SGML (SAS) is an event-driven, serial-access mechanism for accessing SGML
+			documents with JAVA.<br /> Very similar to SAX it allows you to handle events :</p>
+		<ul>
+			<li>Error Handler : to handle warning, error and fatal erros</li>
+			<li>Declaration Handler : events related to the parsing of the SGML declaration
+				part</li>
+			<li>Definition Handler : events related to the parsing of the SGML definition part
+				(DTD)</li>
+			<li>Instance Handler : events related to the parsing of the SGML document it self</li>
+		</ul>
+		<p>Very simple to use, it allows you also to deal with the SGML document as XML document
+			:</p>
+		<ul>
+			<li>
+				<p>Convert from SGML to XML with many options</p>
+			</li>
+			<li>
+				<p>Convert from XML back to SGML</p>
+				<ul>
+					<li>infine allows converting from SGML to SGML</li>
+					<li>transparency : dealing only with XML</li>
+				</ul>
+			</li>
+			<li>
+				<p>Transforming SGML with XSLT transform for various engine like SAXON API (directly
+					as a source or throw extension function)</p>
+			</li>
+			<li>
+				<p>Thread SAFE : very usefull for big data</p>
+			</li>
+		</ul>
+		<h2>Usage</h2>
+		<p>Like SAX, we need to declare a Reader :</p>
+		<pre><code>final SASParserFactory factory = SASParserFactory.newInstance();
 factory.setValidating(true);
 
 final CatalogResolver catalogResolver = new CatalogResolver();
@@ -51,8 +54,18 @@ Reader reader = parser.getSGMLReader();
 reader.setEntityResolver(catalogResolver);
 
 </code></pre>
-    <p>For dealing with SGML events :</p>
-    <pre><code>reader.setInstanceHandler(new InstanceHandler() {
+		<p>This is a catalog sample :</p>
+		<pre><code>
+SGMLDECL "docbook.dec"
+PUBLIC "ISO 8879-1986//ENTITIES Added Latin 1//EN" "entities/Isolat1.ent"
+DOCTYPE BOOK "doctypes/book.dtd"
+
+</code></pre>
+		<p>
+			<strong>The SGMLDECL and the DOCTYPE entries are mandatory.</strong>
+		</p>
+		<p>For dealing with SGML events :</p>
+		<pre><code>reader.setInstanceHandler(new InstanceHandler() {
 		
 		@Override
 		public void startElement(String[] grpList, String qName) throws SASException {
@@ -114,8 +127,8 @@ reader.setEntityResolver(catalogResolver);
 reader.parse(new InputSource("file:/d:/sgml/file.sgm"));
 
 </code></pre>
-    <p>or more simple for converting to XML document :</p>
-    <pre><code>
+		<p>or more simple for converting to XML document :</p>
+		<pre><code>
 XMLReader xr = reader.asXMLReader();
 Source src = new SAXSource(xr, new InputSource("file:/d:/sgml/file.sgm"));
 
@@ -124,75 +137,84 @@ Transformer transformer = TransformerFactory.newInstance().newTransformer();
 transformer.transform(src, res);
 
 </code></pre>
-    <h2>Version</h2>
-    <h3>Home Edition</h3>
-    <p>See the <a href="https://hamdikarray.github.io/simple-api-for-sgml-dist/docs/he/apidocs/index.html"
-        >documentation</a></p>
-    <p>This is an evaluation version with some features desactivated :</p>
-    <ul>
-      <li>Fully java support for SAS like support, conversion in XML, parsing SGML declarartion and DTD definition</li>
-      <li>Some SGML declaration features not supported : DATATAG, RANK</li>
-      <li>Somme DTD features not supported : USEMAP, PIENTITY, STARTAGENTITY, ENDTAGENTITY and MSENTITY</li>
-      <li>Some instance handler event deactivated for entities and attrbutes : all event fired as character event or
-        ignored</li>
-      <li>Limited time evaluation : Evaluation licenses must not be used for production work. On about 1% of time, it
-        will insert random asterisks into serialized output.</li>
-    </ul>
-    <h3>Professional Edition</h3>
-    <p>See the <a href="https://hamdikarray.github.io/simple-api-for-sgml-dist/docs/pe/apidocs/index.html"
-        >documentation</a></p>
-    <p>adds a number of features to HE version :</p>
-    <ul>
-      <li>All SGML declaration features supported</li>
-      <li>All DTD features supported</li>
-      <li>Fully instance handler event support</li>
-    </ul>
-    <h3>Entreprise Edition (coming soon)</h3>
-    <p>The fully-featured product with in addition :</p>
-    <ul>
-      <li>SGML reader and writer support : <ul>
-          <li>Directly for performance</li>
-          <li>Transparency with XML support</li>
-        </ul>
-      </li>
-      <li>DTD canonizing</li>
-      <li>...</li>
-    </ul>
-    <h2>Evaluation</h2>
-    <p>For PE or EE version, please create an issue with the following informations :</p>
-    <table>
-      <thead>
-        <tr>
-          <th>Information</th>
-          <th> </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>* First Name</td>
-          <td> </td>
-        </tr>
-        <tr>
-          <td>* Last Name</td>
-          <td> </td>
-        </tr>
-        <tr>
-          <td>Company</td>
-          <td> </td>
-        </tr>
-        <tr>
-          <td>* Country</td>
-          <td> </td>
-        </tr>
-        <tr>
-          <td>* Email</td>
-          <td> </td>
-        </tr>
-        <tr>
-          <td>Phone</td>
-          <td> </td>
-        </tr>
-      </tbody>
-    </table>
-  </body>
+		<p>We can configure the SASParserFactory :</p>
+		<pre><code>factory.setFeature(SASParserFeatures.QUANTITY_CHECKING, true);
+factory.setFeature(SASParserFeatures.CAPACITY_CHECKING, false);
+factory.setFeature(SASParserFeatures.ID_REF_CHECKING, true);
+</code></pre>
+		<h2>Version</h2>
+		<h3>Home Edition</h3>
+		<p>See the <a
+				href="https://hamdikarray.github.io/simple-api-for-sgml-dist/docs/he/apidocs/index.html"
+				>documentation</a></p>
+		<p>This is an evaluation version with some features desactivated :</p>
+		<ul>
+			<li>Fully java support for SAS like support, conversion in XML, parsing SGML
+				declarartion and DTD definition</li>
+			<li>Some SGML declaration features not supported : DATATAG, RANK</li>
+			<li>Somme DTD features not supported : USEMAP, PIENTITY, STARTAGENTITY, ENDTAGENTITY and
+				MSENTITY</li>
+			<li>Some instance handler event deactivated for entities and attrbutes : all event fired
+				as character event or ignored</li>
+			<li>Limited time evaluation : Evaluation licenses must not be used for production work.
+				On about 1% of time, it will insert random asterisks into serialized output.</li>
+		</ul>
+		<h3>Professional Edition</h3>
+		<p>See the <a
+				href="https://hamdikarray.github.io/simple-api-for-sgml-dist/docs/pe/apidocs/index.html"
+				>documentation</a></p>
+		<p>adds a number of features to HE version :</p>
+		<ul>
+			<li>All SGML declaration features supported</li>
+			<li>All DTD features supported</li>
+			<li>Fully instance handler event support</li>
+		</ul>
+		<h3>Entreprise Edition (coming soon)</h3>
+		<p>The fully-featured product with in addition :</p>
+		<ul>
+			<li>SGML reader and writer support : <ul>
+					<li>Directly for performance</li>
+					<li>Transparency with XML support</li>
+				</ul>
+			</li>
+			<li>DTD canonizing</li>
+			<li>...</li>
+		</ul>
+		<h2>Evaluation</h2>
+		<p>For PE or EE version, please create an issue with the following informations :</p>
+		<table>
+			<thead>
+				<tr>
+					<th>Information</th>
+					<th> </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>* First Name</td>
+					<td> </td>
+				</tr>
+				<tr>
+					<td>* Last Name</td>
+					<td> </td>
+				</tr>
+				<tr>
+					<td>Company</td>
+					<td> </td>
+				</tr>
+				<tr>
+					<td>* Country</td>
+					<td> </td>
+				</tr>
+				<tr>
+					<td>* Email</td>
+					<td> </td>
+				</tr>
+				<tr>
+					<td>Phone</td>
+					<td> </td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>
