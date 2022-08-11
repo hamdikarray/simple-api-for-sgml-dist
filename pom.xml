@@ -12,7 +12,7 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven-assembly-plugin.version>2.6</maven-assembly-plugin.version>
-		<simple-api-for-sgml-he.version>1.00.00</simple-api-for-sgml-he.version>
+		<simple-api-for-sgml-he-dist.version>1.00.00</simple-api-for-sgml-he-dist.version>
 	</properties>
 
 	<developers>
