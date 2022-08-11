@@ -36,8 +36,8 @@
 
 		<dependency>
 			<groupId>com.github.hamdikarray</groupId>
-			<artifactId>simple-api-for-sgml-he</artifactId>
-			<version>${simple-api-for-sgml-he.version}</version>
+		  <artifactId>simple-api-for-sgml-he-dist</artifactId>
+		  <version>${simple-api-for-sgml-he-dist.version}</version>
 		</dependency>
 
 	</dependencies>
