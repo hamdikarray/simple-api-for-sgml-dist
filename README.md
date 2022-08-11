@@ -146,7 +146,6 @@ This is an evaluation version with some features desactivated :
 - Some SGML declaration features not supported : DATATAG, RANK
 - Somme DTD features not supported : USEMAP, PIENTITY, STARTAGENTITY, ENDTAGENTITY and MSENTITY
 - Some instance handler event deactivated for entities and attrbutes : all event fired as character event or ignored 
-- Limited time evaluation : Evaluation licenses must not be used for production work. On about 1% of time, it will insert random asterisks into serialized output.
 
 ### Professional Edition 
 
